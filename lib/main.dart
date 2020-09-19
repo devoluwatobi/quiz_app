@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'questions.dart';
+
 void main() {
   runApp(QuizApp());
 }
@@ -11,17 +13,26 @@ class QuizApp extends StatefulWidget {
 
 class _QuizAppState extends State<QuizApp> {
   List<Icon> scoreKeeper = [];
-  List<String> Questions = [
-    'You can lead a cow downstairs but not upstairs',
-    'Approximately one quater of the human bones are in the feet',
-    'A Slug\'s blood is green. ',
+  List<Question> questionBank = [
+    Question(
+      q: 'You can lead a cow downstairs but not upstairs',
+      a: false,
+    ),
+    Question(
+      q: 'Approximately one quater of the human bones are in the feet',
+      a: true,
+    ),
+    Question(
+      q: 'A Slug\'s blood is green. ',
+      a: true,
+    ),
   ];
-  List<bool> correctAnswers = [false, true, true];
+
   int num = 0;
   bool answer;
 
   void checkAnswer() {
-    if (answer == correctAnswers[num]) {
+    if (answer == questionBank[num].questionAnswer) {
       scoreKeeper.add(Icon(
         Icons.check,
         color: Colors.green,
@@ -53,7 +64,7 @@ class _QuizAppState extends State<QuizApp> {
                   padding: const EdgeInsets.all(10.0),
                   child: Center(
                     child: Text(
-                      Questions[num],
+                      questionBank[num].questionText,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
